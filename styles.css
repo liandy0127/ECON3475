@@ -1,0 +1,822 @@
+#campaign-trails {
+    position: absolute;
+    left: 150px;
+    top: 330px;
+    text-wrap: nowrap;
+}
+
+#campaign-trails-description-1 {
+    position: absolute;
+    left: 170px;
+    top: 400px;
+    text-wrap: nowrap;
+}
+
+#campaign-trails-description-2 {
+    position: absolute;
+    left: 170px;
+    top: 530px;
+    text-wrap: nowrap;
+}
+
+svg.america-line path {
+    stroke: lightgreen;
+    stroke-width: 10px;
+}
+
+svg.america-line {
+    position: absolute;
+    left: 900px;
+    bottom: 0%;
+    width: 3108px;
+    z-index: -1;
+}
+
+
+#america-map {
+    position: absolute;
+    left: 1700px;
+    top: 230px;
+    text-wrap: nowrap;
+}
+
+#methodology {
+    position: absolute;
+    left: 3000px;
+    top: 250px;
+    text-wrap: nowrap;
+}
+
+#methodology-description-1 {
+    position: absolute;
+    left: 3050px;
+    top: 300px;
+    text-wrap: nowrap;
+}
+
+#methodology-description-included {
+    position: absolute;
+    left: 3950px;
+    top: 250px;
+    text-wrap: nowrap;
+}
+
+#methodology-description-excluded {
+    position: absolute;
+    left: 3945px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+#methodology-description-2 {
+    position: absolute;
+    left: 4050px;
+    top: 50px;
+    text-wrap: nowrap;
+}
+
+.hoverable-image {
+    display: inline-block;
+}
+
+#methodology-included {
+    display: inline-block;
+    position: absolute;
+    left: 4050px;
+    top: 250px;
+    text-wrap: nowrap;
+}
+
+#methodology-excluded {
+    position: absolute;
+    left: 4050px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+svg.numbers-line path {
+    stroke: #90ee90;
+    stroke-width: 10px;
+}
+
+svg.numbers-line {
+    position: absolute;
+    left: 4050px;
+    bottom: 0px;
+    width: 2700px;
+    z-index: -1;
+}
+
+.statistic {
+    text-align: center;
+}
+
+#visits-number {
+    position: absolute;
+    left: 5500px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+#visits-number h1 {
+    font-size: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#years-number {
+    position: absolute;
+    left: 5970px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+#years-number h1 {
+    font-size: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#states-number {
+    position: absolute;
+    left: 6300px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+#states-number h1 {
+    font-size: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#general-insights {
+    position: absolute;
+    left: 7000px;
+    top: 50%;
+    text-wrap: nowrap;
+}
+
+svg.general-insights {
+    position: absolute;
+    left: 6770px;
+    bottom: 50%;
+    height: 600px;
+    width: 600px;
+    z-index: -1;
+    transform: translateY(325px);
+}
+
+#pop-bar {
+    position: absolute;
+    left: 7500px;
+    top: 50px;
+    text-wrap: nowrap;
+}
+
+#pop-bar-writeup-1 {
+    position: absolute;
+    left: 7500px;
+    top: 475px;
+    text-wrap: nowrap;
+}
+
+#visit-bar {
+    position: absolute;
+    left: 8300px;
+    top: 250px;
+    text-wrap: nowrap;
+}
+
+#visit-bar-writeup-1 {
+    position: absolute;
+    left: 8300px;
+    top: 75px;
+    text-wrap: nowrap;
+}
+
+#visit-bar-writeup-2 {
+    position: absolute;
+    left: 9200px;
+    top: 100px;
+    text-wrap: nowrap;
+}
+
+
+#visit-bar-writeup-3 {
+    position: absolute;
+    left: 9200px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+svg.bar-map-line path {
+    stroke: #90ee90;
+    stroke-width: 7px;
+}
+
+svg.bar-map-line {
+    position: absolute;
+    left: 10000px;
+    top: 40%;
+    width: 600px;
+    z-index: -1;
+}
+
+#heatmap {
+    position: absolute;
+    left: 10700px;
+    top: 0px;
+    text-wrap: nowrap;
+}
+
+#heatmap-writeup-1 {
+    position: absolute;
+    left: 10700px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+#heatmap-writeup-2 {
+    position: absolute;
+    left: 11700px;
+    top: 150px;
+    text-wrap: nowrap;
+}
+
+#heatmap-writeup-3 {
+    position: absolute;
+    left: 11700px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+svg.map-bubble-line path {
+    stroke: #90ee90;
+    stroke-width: 7px;
+}
+
+svg.map-bubble-line {
+    position: absolute;
+    left: 12600px;
+    top: 40%;
+    width: 600px;
+    z-index: -1;
+}
+
+#r-bubble {
+    position: absolute;
+    left: 13500px;
+    top: 20px;
+    text-wrap: nowrap;
+}
+
+#bubble-writeup-1 {
+    position: absolute;
+    left: 13300px;
+    top: 500px;
+    text-wrap: nowrap;
+}
+
+#d-bubble {
+    position: absolute;
+    left: 14300px;
+    top: 220px;
+    text-wrap: nowrap;
+}
+
+#bubble-writeup-2 {
+    position: absolute;
+    left: 14150px;
+    top: 50px;
+    text-wrap: nowrap;
+}
+
+#bubble-writeup-3 {
+    position: absolute;
+    left: 14900px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+#past-elections {
+    position: absolute;
+    left: 16000px;
+    top: 50%;
+    text-wrap: nowrap;
+}
+
+svg.data-background {
+    position: absolute;
+    left: 15790px;
+    bottom: 50%;
+    height: 600px;
+    width: 600px;
+    z-index: -1;
+    transform: translateY(325px);
+}
+
+#election-2004 {
+    position: absolute;
+    left: 16600px;
+    top: 400px;
+    text-wrap: nowrap;
+}
+
+#bush-kerry-2004 {
+    position: absolute;
+    left: 16600px;
+    top: 30px;
+    text-wrap: nowrap;
+}
+
+#election-2004-writeup-1 {
+    position: absolute;
+    left: 16650px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+#election-2004-writeup-2 {
+    position: absolute;
+    left: 17900px;
+    top: 175px;
+    text-wrap: nowrap;
+}
+
+#election-2004-writeup-3 {
+    position: absolute;
+    left: 17900px;
+    top: 375px;
+    text-wrap: nowrap;
+}
+
+#bush-florida-newspaper {
+    position: absolute;
+    left: 18900px;
+    top: 35%;
+    text-wrap: nowrap;
+}
+
+svg.bush-obama-line path {
+    stroke: #90ee90;
+    stroke-width: 10px;
+}
+
+svg.bush-obama-line {
+    position: absolute;
+    left: 19600px;
+    top: 45%;
+    width: 600px;
+    z-index: -1;
+}
+
+#obama-mccain-2008 {
+    position: absolute;
+    left: 20400px;
+    top: 300px;
+    text-wrap: nowrap;
+}
+
+#election-2008 {
+    position: absolute;
+    left: 20450px;
+    top: 50px;
+    text-wrap: nowrap;
+}
+
+#election-2008-writeup-1 {
+    position: absolute;
+    left: 20500px;
+    top: 120px;
+    text-wrap: nowrap;
+}
+
+#election-2008-writeup-2 {
+    position: absolute;
+    left: 21500px;
+    top: 150px;
+    text-wrap: nowrap;
+}
+
+#election-2008-writeup-3 {
+    position: absolute;
+    left: 21500px;
+    top: 350px;
+    text-wrap: nowrap;
+}
+
+#election-2008-writeup-4 {
+    position: absolute;
+    left: 22500px;
+    top: 150px;
+    text-wrap: nowrap;
+}
+
+#obama-virginia-newspaper {
+    position: absolute;
+    left: 22550px;
+    top: 350px;
+    text-wrap: nowrap;
+}
+
+svg.obama-obama-line path {
+    stroke: #90ee90;
+    stroke-width: 6px;
+}
+
+svg.obama-obama-line {
+    position: absolute;
+    left: 23300px;
+    top: 45%;
+    width: 600px;
+    z-index: -1;
+}
+
+#obama-romney-2012 {
+    position: absolute;
+    left: 24000px;
+    top: 50px;
+    text-wrap: nowrap;
+}
+
+#election-2012 {
+    position: absolute;
+    left: 24000px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+#election-2012-writeup-1 {
+    position: absolute;
+    left: 24050px;
+    top: 500px;
+    text-wrap: nowrap;
+}
+
+
+#election-2012-writeup-2 {
+    position: absolute;
+    left: 25050px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+
+#election-2012-writeup-3 {
+    position: absolute;
+    left: 25900px;
+    top: 75px;
+    text-wrap: nowrap;
+}
+
+#romney-2012-article {
+    position: absolute;
+    left: 26100px;
+    top: 320px;
+    text-wrap: nowrap;
+}
+
+svg.obama-trump-line path {
+    stroke: #90ee90;
+    stroke-width: 10px;
+}
+
+svg.obama-trump-line {
+    position: absolute;
+    left: 26600px;
+    top: 45%;
+    width: 600px;
+    z-index: -1;
+}
+
+#trump-clinton-2016 {
+    position: absolute;
+    left: 27200px;
+    top: 350px;
+    text-wrap: nowrap;
+}
+
+#election-2016 {
+    position: absolute;
+    left: 27300px;
+    top: 50px;
+    text-wrap: nowrap;
+}
+
+#election-2016-writeup-1 {
+    position: absolute;
+    left: 27350px;
+    top: 100px;
+    text-wrap: nowrap;
+}
+
+#election-2016-writeup-2 {
+    position: absolute;
+    left: 28400px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+svg.trump-obama-line path {
+    stroke: #90ee90;
+    stroke-width: 10px;
+}
+
+svg.trump-biden-line {
+    position: absolute;
+    left: 29400px;
+    top: 15%;
+    width: 600px;
+    z-index: -1;
+}
+
+#election-2020 {
+    position: absolute;
+    left: 30100px;
+    top: 50px;
+    text-wrap: nowrap;
+}
+
+#election-2020-writeup-1 {
+    position: absolute;
+    left: 30150px;
+    top: 100px;
+    text-wrap: nowrap;
+}
+
+#biden-trump-2020 {
+    position: absolute;
+    left: 30000px;
+    top: 350px;
+    text-wrap: nowrap;
+}
+
+#election-2020-writeup-2 {
+    position: absolute;
+    left: 31050px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+svg.prediction-background {
+    position: absolute;
+    left: 32050px;
+    bottom: 50%;
+    height: 600px;
+    width: 600px;
+    z-index: -1;
+    transform: translateY(325px);
+}
+
+#prediction-2024 {
+    position: absolute;
+    left: 32255px;
+    top: 50%;
+    text-wrap: nowrap;
+}
+
+#trump-harris-2024 {
+    position: absolute;
+    left: 32955px;
+    top: 70px;
+    text-wrap: nowrap;
+}
+
+#prediction-2024-writeup-1 {
+    position: absolute;
+    left: 33100px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+#prediction-2024-writeup-2 {
+    position: absolute;
+    left: 34100px;
+    top: 100px;
+    text-wrap: nowrap;
+}
+
+#prediction-2024-writeup-3 {
+    position: absolute;
+    left: 34100px;
+    top: 400px;
+    text-wrap: nowrap;
+}
+
+#prediction-2024-writeup-4 {
+    position: absolute;
+    left: 35100px;
+    top: 70px;
+    text-wrap: nowrap;
+}
+
+#prediction-2024-writeup-5 {
+    position: absolute;
+    left: 35100px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+#model-elections-1 {
+    display: inline-block;
+    position: absolute;
+    left: 36280px;
+    top: 250px;
+    text-wrap: nowrap;
+}
+
+#model-elections-2 {
+    display: inline-block;
+    position: absolute;
+    left: 36350px;
+    top: 450px;
+    text-wrap: nowrap;
+}
+
+#model-elections-title {
+    display: inline-block;
+    position: absolute;
+    left: 36200px;
+    top: 50px;
+    text-wrap: nowrap;
+}
+
+#prediction-2024-writeup-6 {
+    position: absolute;
+    left: 37100px;
+    top: 100px;
+    text-wrap: nowrap;
+}
+
+#prediction-2024-writeup-7 {
+    position: absolute;
+    left: 37100px;
+    top: 400px;
+    text-wrap: nowrap;
+}
+
+svg.conclusion-background {
+    position: absolute;
+    left: 38100px;
+    bottom: 50%;
+    height: 600px;
+    width: 600px;
+    z-index: -1;
+    transform: translateY(325px);
+}
+
+#conclusion {
+    position: absolute;
+    left: 38340px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+#conclusion-1 {
+    position: absolute;
+    left: 38900px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+svg.about-background {
+    position: absolute;
+    left: 39875px;
+    bottom: 50%;
+    height: 600px;
+    width: 600px;
+    z-index: -1;
+    transform: translateY(325px);
+}
+
+#about {
+    position: absolute;
+    left: 40150px;
+    top: 45%;
+    text-wrap: nowrap;
+}
+
+#nikhil-headshot {
+    position: absolute;
+    left: 40550px;
+    top: 35%;
+    text-wrap: nowrap;
+}
+
+#ella-headshot {
+    position: absolute;
+    left: 40850px;
+    top: 35%;
+    text-wrap: nowrap;
+}
+
+#natalie-headshot {
+    position: absolute;
+    left: 41150px;
+    top: 35%;
+    text-wrap: nowrap;
+}
+
+#shashank-headshot {
+    position: absolute;
+    left: 41450px;
+    top: 35%;
+    text-wrap: nowrap;
+}
+
+#vivian-headshot {
+    position: absolute;
+    left: 41750px;
+    top: 35%;
+    padding-right: 100px;
+    text-wrap: nowrap;
+}
+
+#about-github {
+    position: absolute;
+    left: 41000px;
+    top: 100px;
+    text-wrap: nowrap;
+}
+
+/* below are general styles */
+
+html {
+    cursor: url("images/cursor.svg"), auto;
+}
+
+a:hover {
+    cursor: url("images/cursor-alt.svg"), auto;
+}
+
+#close-button {
+    position: fixed;
+    top: -5px;
+    z-index: 10;
+    right: 20px;
+}
+
+a {
+    color: #444;
+    text-decoration: none;
+}
+
+#close-button a:hover {
+    text-decoration: line-through;
+}
+
+.tooltip {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #FFF8EB;
+    color: white;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: 1px;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.hoverable-image:hover .tooltip {
+    opacity: 1;
+}
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: 1.4;
+    color: #444;
+}
+
+h3 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    line-height: 1.4;
+    color: #444;
+}
+
+h2,
+h4 {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    color: #444;
+    font-weight: normal;
+}
+
+p {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
+    font-size: 12px;
+    color: #444;
+    font-weight: normal;
+}
+
+body {
+    width: 90vw;
+    height: 90vh;
+    margin: 0;
+    background: #FFF8EB;
+    /* overflow: hidden; */
+}

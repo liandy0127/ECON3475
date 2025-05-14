@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Slow Burn of Digital Gold: An Economic Autopsy of 'BitterCoin'</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+    <style>
+        body {
+            background-image: url('images/background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #332D22;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .bittercoin-content-wrapper {
+            display: flex;
+            flex-direction: row;
+            width: 2000vw;
+            height: 100vh;
+            position: relative;
+            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .bittercoin-page {
+            width: 100vw;
+            height: 100vh;
+            padding: 30px 50px;
+            box-sizing: border-box;
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background-color: rgba(255, 235, 205, 0.1);
+        }
+
+        .bittercoin-page-content {
+            max-width: 1000px;
+            width: 90%;
+            max-height: 85vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(145deg, rgba(240, 217, 181, 0.85), rgba(218, 165, 32, 0.75));
+            padding: 25px 35px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.5);
+        }
+
+        .layout-split {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .layout-split>div {
+            width: 48%;
+            max-height: 75vh;
+            overflow-y: auto;
+        }
+
+        .layout-split>div>ul {
+            padding-left: 5px;
+        }
+
+        .layout-split>div>h2,
+        .layout-split>div>h3 {
+            text-align: left;
+            margin-top: 0;
+        }
+
+        .bittercoin-page-content.text-left {
+            text-align: left;
+            align-items: flex-start;
+        }
+
+        .bittercoin-page-content.text-left ul {
+            padding-left: 5px;
+        }
+
+        .title-slide h1 {
+            font-size: 3.5em;
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .title-slide .large-icon {
+            width: 120px;
+            height: 120px;
+        }
+
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: #4A3B24;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.3);
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+        }
+
+        h2 {
+            font-size: 2.1em;
+            border-bottom: 2px solid #B8860B;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.7em;
+        }
+
+        p,
+        li {
+            font-size: 1.0em;
+            color: #332D22;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 20px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        li {
+            text-align: left;
+            margin-left: 0;
+        }
+
+
+        figcaption {
+            font-size: 0.75em;
+            font-style: italic;
+            margin-top: 8px;
+            color: #5C4033;
+        }
+
+        a {
+            color: #8B4513;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dotted #8B4513;
+        }
+
+        a:hover {
+            color: #A0522D;
+            border-bottom: 1px solid #A0522D;
+        }
+
+        .icon {
+            width: 35px;
+            height: 35px;
+            margin: 0 8px;
+            vertical-align: middle;
+        }
+
+        .chart-container {
+            width: 100%;
+            max-width: 600px;
+            min-height: 350px;
+            height: auto;
+            max-height: 40vh;
+            margin: 15px auto;
+            padding: 15px;
+            background-color: rgba(255, 250, 240, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .layout-split .chart-container {
+            max-width: 100%;
+            min-height: 300px;
+            max-height: 35vh;
+        }
+
+        .data-plot {
+            max-width: 60%;
+            max-height: 300px;
+            object-fit: contain;
+            margin: 15px auto;
+            display: block;
+            border: 2px solid #DAA520;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 35px;
+            color: #FFF8DC;
+            background-color: rgba(139, 69, 19, 0.7);
+            padding: 12px 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10000;
+            user-select: none;
+            transition: background-color 0.3s, transform 0.2s;
+            border: 2px solid #FFD700;
+        }
+
+        .nav-arrow:hover {
+            background-color: rgba(160, 82, 45, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        #prev-arrow {
+            left: 25px;
+        }
+
+        #next-arrow {
+            right: 25px;
+        }
+
+        #slide-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(60, 45, 30, 0.8);
+            color: #FFD700;
+            padding: 8px 18px;
+            border-radius: 18px;
+            font-size: 0.9em;
+            z-index: 10000;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .large-icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 15px;
+        }
+
+        .footnote {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.6em;
+            color: #654321;
+            text-align: center;
+            width: 90%;
+        }
+
+        .reference-list {
+            font-size: 0.8em;
+            line-height: 1.4;
+            text-align: left;
+            columns: 2;
+            column-gap: 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .reference-list li {
+            margin-bottom: 8px;
+            list-style-type: none;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        ul li:last-child {
+            margin-bottom: 5px;
+        }
+
+        .author-container {
+            display: flex;
+            flex-direction: column;
+            /* headshot on top, name below */
+            align-items: center;
+            gap: 8px;
+            /* spacing between img & name */
+            max-width: 140px;
+            /* keeps the column tight */
+        }
+
+        .author-headshot {
+            width: 120px;
+            /* fixed size */
+            height: 120px;
+            object-fit: cover;
+            /* crop to fill the circle */
+            border-radius: 50%;
+            /* makes it a circle */
+            border: 3px solid #B8860B;
+            /* optional gold‑brown ring */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .author-name {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            /* match slide font */
+            font-weight: 600;
+            color: #4A3B24;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="slide-counter">1 / 20</div>
+    <div class="nav-arrow" id="prev-arrow" aria-label="Previous Slide">&#9664;</div>
+    <div class="nav-arrow" id="next-arrow" aria-label="Next Slide">&#9654;</div>
+
+    <div class="bittercoin-content-wrapper">
+        <div class="bittercoin-page active">
+            <div class="bittercoin-page-content title-slide">
+                <img src="images/bitcoin.png" alt="Hourglass with Coins" class="large-icon">
+                <h1>The Slow Burn of Digital Gold</h1>
+                <p class="subtitle">An Economic Autopsy of 'BitterCoin'</p>
+                <div class="author-container">
+                    <img src="images/Andy.png" alt="Andy Li Headshot" class="author-headshot">
+                    <p class="author-name">Andy Li</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content text-left">
+                <h2>
+                    BitterCoin: The Worst Miner Ever
+                    <img src="https://cdn-icons-png.flaticon.com/512/3058/3058037.png" alt="Calculator" class="icon">
+                </h2>
+
+                <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px; width:100%;">
+                    <div style="flex: 1;">
+
+                        <h3 style="margin-top: 15px;">What is BitterCoin?</h3>
+                        <ul style="font-size:1em; padding-left: 20px;">
+                            <li>An installation artwork of a old calculator machine hacked to function as a Bitcoin
+                                miner.</li>
+                            <li>Validates pending Bitcoin transactions in the Blockchain (an online distributed
+                                database).</li>
+                            <li>Mining operations are displayed on the calculator's screen and printed.</li>
+                            <li>Combines Internet of Things (IoT), media archaeology, and economic commentary.</li>
+                        </ul>
+                    </div>
+
+                    <div style="flex: 1; text-align: center; padding-top: 20px;">
+                        <img src="images/bittercoin.jpg" alt="BitterCoin Installation"
+                            style="max-width: 90%; max-height: 40vh; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                        <figcaption style="font-size: 0.7em; font-style: italic; margin-top: 8px; color: #5C4033;">
+                            The "BitterCoin" installation by César Escudero Andaluz & Martín Nadal (2016).
+                        </figcaption>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- ───── Bitcoin Mining: economic lens (Slide 3) ───── -->
+        <!-- ─── Slide 3: 50‑word economic snapshot ─── -->
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content text-left">
+                <h2>
+                    What is Bitcoin mining?
+                    <img src="https://cdn-icons-png.flaticon.com/512/826/826070.png" alt="CPU" class="icon">
+                </h2>
+
+                <ul>
+                    <li>Bitcoin mining is like a huge computer race.
+                        Lots of computers try to guess a special number to get bitcoins as rewards.</li>
+                    <li>What is Hashrate? Hashrate shows how fast all the miners are guessing.
+                        Each try is a “hash.”
+                        A higher hashrate means more guesses per second.
+                        More hashrate = stronger network = header to guess = more energy to use</li>
+                </ul>
+
+                <canvas id="btcMiningIndustryChart" width="600" height="300"></canvas>
+                <div class="footnote">Source: Blockchain.com and YCharts </div>
+            </div>
+        </div>
+
+        <!-- ───── Chart.js script (insert after Chart.js library) ───── -->
+        <script>
+            /* NOTE: Real values are condensed from Blockchain.com & YCharts aggregates.
+               2024 figure is YTD through April. EH/s = exahashes per second. */
+            const years = ['2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024*'];
+            const minerRevenueBillions = [0.35, 0.56, 3.20, 5.00, 5.30, 5.10, 15.30, 9.55, 11.0, 8.2];  // USD B
+            const hashrateEHps = [0.30, 1.5, 6, 35, 70, 110, 150, 200, 350, 650];     // EH/s
+
+            new Chart(
+                document.getElementById('btcMiningIndustryChart').getContext('2d'),
+                {
+                    type: 'bar',
+                    data: {
+                        labels: years,
+                        datasets: [
+                            {
+                                label: 'Total Miner Revenue (USD B)',
+                                data: minerRevenueBillions,
+                                backgroundColor: '#DAA520',
+                                yAxisID: 'y',
+                                order: 2
+                            },
+                            {
+                                label: 'Avg. Network Hash‑rate (EH/s)',
+                                data: hashrateEHps,
+                                type: 'line',
+                                tension: 0.35,
+                                fill: false,
+                                backgroundColor: '#4682B4',
+                                borderColor: '#4682B4',
+                                yAxisID: 'y1',
+                                order: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Bitcoin Mining Industry, 2015 – 2024 (*YTD)'
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        },
+                        responsive: true,
+                        scales: {
+                            y: {
+                                position: 'left',
+                                title: { display: true, text: 'Revenue (USD Billions)' },
+                                grid: { drawOnChartArea: true }
+                            },
+                            y1: {
+                                position: 'right',
+                                title: { display: true, text: 'Hash‑rate (EH/s)' },
+                                grid: { drawOnChartArea: false }
+                            }
+                        }
+                    }
+                }
+            );
+        </script>
+
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content title-slide">
+                <img src="https://cdn-icons-png.flaticon.com/512/2640/2640351.png" alt="Balance Scale"
+                    class="large-icon">
+                <h1>Theme 1: Market Structure</h1>
+            </div>
+        </div>
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content text-left">
+                <h2>
+                    Economic Concepts
+                    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" alt="Building Blocks"
+                        class="icon">
+                </h2>
+
+                <div style="display: flex; gap: 20px; align-items: flex-start;">
+                    <!-- Left column: conceptual bullet points -->
+                    <div style="flex: 1;">
+                        <h3>Types of Market Structures</h3>
+                        <ul>
+                            <li><strong>Perfect Competition</strong>: many firms, identical products, price takers</li>
+                            <li><strong>Oligopoly</strong>: few large firms, strategic interdependence</li>
+                            <li><strong>Monopoly</strong>: single seller, unique product, price maker</li>
+                        </ul>
+
+                        <h3>Key Concepts</h3>
+                        <ul>
+                            <li><strong>Barriers to Entry</strong>: capital requirements, economies of scale, regulation
+                            </li>
+                            <li><strong>Information Asymmetry</strong>: unequal knowledge between buyers and sellers
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Right column: illustrative images -->
+                    <div style="flex: 1; display: flex; flex-direction: column; gap: 16px; align-items: center;">
+                        <img src="images/market.png" alt="Market Structure Spectrum"
+                            style="max-width: 60%; height: auto;">
+                        <img src="images/barriers_1.png" alt="Barriers to Entry" style="max-width: 60%; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content text-left">
+                <h2>
+                    Conceptual Analysis
+                    <img src="https://cdn-icons-png.flaticon.com/512/3204/3204856.png" alt="Lightbulb" class="icon">
+                </h2>
+
+                <ul>
+                    <li>
+                        By design, anyone can start mining → perfect-competition model where rewards cover costs and
+                        profits vanish.
+                    </li>
+                    <li>
+                        Over time, expensive ASIC hardware, high electricity bills &amp; technical know-how limit
+                        newcomers.
+                    </li>
+                    <li>
+                        Large operations predict difficulty changes &amp; negotiate power deals—small miners lack this
+                        info.
+                    </li>
+                    <li>
+                        Result: hash-power pools around a few firms, shifting the market toward an oligopoly.
+                    </li>
+                </ul>
+
+                <!-- Panels with right-pointing arrows between them -->
+                <div style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 8px;
+                  margin-top: 20px;
+                ">
+                    <div style="flex: 1; text-align: center;">
+                        <img src="images/p11.png" alt="Perfect competition panel"
+                            style="max-width: 100%; height: auto;">
+                    </div>
+
+                    <div style="font-size: 2rem; line-height: 1;">→</div>
+
+                    <div style="flex: 1; text-align: center;">
+                        <img src="images/p22.png" alt="Barriers to entry panel" style="max-width: 100%; height: auto;">
+                    </div>
+
+                    <div style="font-size: 2rem; line-height: 1;">→</div>
+
+                    <div style="flex: 1; text-align: center;">
+                        <img src="images/p33.png" alt="Information asymmetry panel"
+                            style="max-width: 100%; height: auto;">
+                    </div>
+
+                    <div style="font-size: 2rem; line-height: 1;">→</div>
+
+                    <div style="flex: 1; text-align: center;">
+                        <img src="images/p44.png" alt="Oligopoly panel" style="max-width: 100%; height: auto;">
+                    </div>
+                </div>
+                <div class="footnote">Source: Ma, Gans, and Tourky, Market Structure in Bitcoin Mining. </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content">
+                <h2>Empirical Analysis: Mining Concentration <img
+                        src="https://cdn-icons-png.flaticon.com/512/1165/1165118.png" alt="Pyramid" class="icon">
+                </h2>
+                <ul>
+                    <li>Data shows high concentration. Top 0.1% miners control ~50% capacity.
+                    </li>
+                    <li>Top mining pools (aggregators of hash power) dominate, supporting the oligopolistic view.
+                        This
+                        means the "free entry" leads to a competitive race won by few, large, efficient players.
+                    </li>
+                    <li>Caveat: the data is for a global stage, market structures in different countries could differ:
+                        more firms in the USA means more competition. For cetrain countries, Khazakstan, may see more
+                        intensed Oligopoly with less competitors.
+                    </li>
+                </ul>
+                <div class="chart-container" style="max-height: 45vh;">
+                    <canvas id="miningPoolShareChart"></canvas>
+                </div>
+                <div class="footnote">Source: Makarov and Schoar, <em>Blockchain Analysis of the Bitcoin Market.</em>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content">
+                <h2>
+                    Empirical Analysis: Miner Profitability & Costs
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Coins" class="icon">
+                </h2>
+                <ul>
+                    <li>
+                        The chart shows average daily earnings per unit of hash power versus estimated running costs.
+                    </li>
+                    <li>
+                        Spikes in revenue lure new miners into the network, which raises competition and drives up total
+                        costs.
+                    </li>
+                    <li>
+                        As more miners join, the gap between revenue and cost narrows, squeezing profit margins toward
+                        zero.
+                    </li>
+                    <li>
+                        This behavior mirrors Ma, Gans & Tourky’s theory: free entry pushes resource costs up until
+                        profits are competed away.
+                    </li>
+                </ul>
+                <div class="chart-container" style="max-height: 45vh;">
+                    <canvas id="minerRevenueVsCostChart"></canvas>
+                </div>
+                <div class="footnote">Source: Coin Metrics, <em>Bitcoin Miners' Income Stabilizes Post-Halving.</em>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content title-slide">
+                <img src="https://cdn-icons-png.flaticon.com/512/1839/1839119.png" alt="Sad Earth" class="large-icon">
+                <h1>Theme 2: Tragedy of the Commons</h1>
+            </div>
+        </div>
+
+        <!-- ─── Tragedy of the Commons — Concepts ───────────────────────── -->
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content text-left">
+                <h2>Economic Concepts
+                    <img src="https://cdn-icons-png.flaticon.com/512/1055/1055645.png" alt="Building Blocks"
+                        class="icon">
+                </h2>
+                <h3 style="margin-top: 15px;">What is Tragedy of the Commons?</h3>
+                <ul>
+                    <li>When many people share a resource—like fish in a lake—unlimited use can exhaust it.</li>
+                    <li>Each person gains the full benefit of extra use, but everyone bears the loss when the resource
+                        is depleted.</li>
+                    <li>Without clear rules or limits, shared resources are quickly <em>overused</em>.</li>
+                    <li>Small communities can protect a commons by agreeing on limits and penalties, but that requires
+                        trust and effective leadership.</li>
+                </ul>
+
+                <!-- Panels with arrows -->
+                <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;">
+                    <div style="flex:1;text-align:center;">
+                        <img src="images/p5.png" alt="Perfect competition panel" style="max-width:100%;height:auto;">
+                    </div>
+                    <div style="font-size:2rem;line-height:1;">→</div>
+                    <div style="flex:1;text-align:center;">
+                        <img src="images/p6.png" alt="Barriers to entry panel" style="max-width:100%;height:auto;">
+                    </div>
+                    <div style="font-size:2rem;line-height:1;">→</div>
+                    <div style="flex:1;text-align:center;">
+                        <img src="images/p7.png" alt="Information asymmetry panel" style="max-width:100%;height:auto;">
+                    </div>
+                    <div style="font-size:2rem;line-height:1;">→</div>
+                    <div style="flex:1;text-align:center;">
+                        <img src="images/p8.png" alt="Oligopoly panel" style="max-width:100%;height:auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content text-left">
+                <h2>Conceptual Analysis <img src="https://cdn-icons-png.flaticon.com/512/3204/3204856.png"
+                        alt="Lightbulb" class="icon"></h2>
+
+                <ul style="font-size:0.85em; padding-left: 20px; margin-bottom: 15px;">
+                    <li>
+                        <strong>Individual incentive:</strong> Each miner boosts electricity use for more Bitcoin, while
+                        environmental damage (pollution, e-waste) is shared by all.
+                    </li>
+                    <li>
+                        <strong>Collective harm:</strong> Unchecked, this competitive mining strains power grids and
+                        increases overall emissions.
+                    </li>
+                </ul>
+
+                <p style="font-size:0.9em;">
+                    <strong>Nash Equilibrium & Miner's Dilemma:</strong> In this "Miner's Dilemma" on the shared 'energy
+                    commons,' if all miners act selfishly to maximize profit, a stable state (Nash Equilibrium) emerges.
+                    No single miner benefits by changing strategy alone, leading to collective energy overuse and
+                    environmental harm, even if cooperation were better. The table illustrates this.
+                </p>
+
+                <h4 style="font-size:1.0em; margin-top:15px; margin-bottom:5px; text-align:center;">Illustrative Miner's
+                    Dilemma Payoff Matrix</h4>
+                <p style="font-size:0.75em; text-align:center; margin-bottom:10px;"><i>(Conceptual Payoffs: Miner 1,
+                        Miner 2)</i></p>
+                <table style="width: 95%; margin: 0 auto; border-collapse: collapse; font-size:0.8em;">
+                    <thead>
+                        <tr>
+                            <th style="border: 1px solid #ccc; padding: 4px; background-color:#f0e5d1;"></th>
+                            <th style="border: 1px solid #ccc; padding: 4px; background-color:#f0e5d1;" colspan="2">
+                                Miner 2's Strategy</th>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid #ccc; padding: 4px; background-color:#f0e5d1;">Miner 1's
+                                Strategy</th>
+                            <th style="border: 1px solid #ccc; padding: 4px; background-color:#e6dbc8;">Mine Responsibly
+                                (Low Energy)</th>
+                            <th style="border: 1px solid #ccc; padding: 4px; background-color:#e6dbc8;">Mine
+                                Aggressively (High Energy)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="border: 1px solid #ccc; padding: 4px; background-color:#e6dbc8;">Mine Responsibly
+                                (Low Energy)</th>
+                            <td style="border: 1px solid #ccc; padding: 4px; text-align: center;">Cooperative
+                                Outcome<br>(e.g., 5, 5)</td>
+                            <td style="border: 1px solid #ccc; padding: 4px; text-align: center;">Miner 1 Exploited /
+                                Miner 2 Gains<br>(e.g., -1, 8)</td>
+                        </tr>
+                        <tr>
+                            <th style="border: 1px solid #ccc; padding: 4px; background-color:#e6dbc8;">Mine
+                                Aggressively (High Energy)</th>
+                            <td style="border: 1px solid #ccc; padding: 4px; text-align: center;">Miner 1 Gains / Miner
+                                2 Exploited<br>(e.g., 8, -1)</td>
+                            <td style="border: 1px solid #ccc; padding: 4px; text-align: center;">Sub-Optimal Nash
+                                Equilibrium<br>(e.g., 2, 2)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size:0.75em; margin-top:10px; text-align:center;">
+                    <i>If aggressive mining is individually dominant, both select it, resulting in (2,2)—worse for both
+                        than cooperation (5,5).</i>
+                </p>
+                <div class="footnote">Singh et al., A Game Theoretic
+                    Analysis of Resource Mining in Blockchain.
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content">
+                <h2>Empirical Analysis: Incentive Drives Overconsumption <img
+                        src="https://cdn-icons-png.flaticon.com/512/2910/2910779.png" alt="Graph Up" class="icon"></h2>
+                <ul>
+                    <li>As Bitcoin prices rise, miners ramp up hashrate and energy use to boost profits.</li>
+                    <li>This self-interested response increases network-wide electricity demand.</li>
+                    <li>Shared energy resources are overdrawn—no miner wants to fall behind.</li>
+                    <li>The result mirrors a Nash equilibrium: rational for individuals, harmful for the group.</li>
+                </ul>
+
+                <div class="chart-container">
+                    <canvas id="priceHashEnergyChart"></canvas>
+                </div>
+                <div class="footnote">Guidi et al. (2025)
+                    Guidi et al., The Environmental Burden of the United States’ Bitcoin Mining Boom.
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content">
+                <h2>Empirical Analysis: Policy & Shifting Incentives <img
+                        src="https://cdn-icons-png.flaticon.com/512/2640/2640351.png" alt="Balance Scale" class="icon">
+                </h2>
+                <ul>
+                    <li>To solve mining’s externalities, policies must realign incentives.</li>
+                    <li>Pigovian taxes (like the proposed DAME tax) price in energy and emissions costs.</li>
+                    <li>Miners then face the true social cost of overconsumption.</li>
+                    <li>This shifts outcomes away from overuse and toward collective sustainability.</li>
+                    <li>Caveat: The data a geneerated from predictions with assumptions like miner behavior, tax
+                        enforcement, and energy substitution, may not hold in practice.</li>
+                </ul>
+
+
+                <div class="chart-container">
+                    <canvas id="policyImpactChart"></canvas>
+                </div>
+                <div class="footnote">Cambridge Centre for Alternative Finance (2022)
+                    CCAF, Cambridge Bitcoin Electricity Consumption Index.
+                </div>
+            </div>
+        </div>
+
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content text-left">
+                <h2>'BitterCoin': Economic Concepts Embodied <img
+                        src="https://cdn-icons-png.flaticon.com/512/7450/7450194.png" alt="Critical Eye" class="icon">
+                </h2>
+                <p style="font-size:1em; margin-bottom: 15px;">
+                    The 'BitterCoin' artwork, a deliberately slow "miner," makes Bitcoin's complex economics easier to
+                    grasp by showing:
+                </p>
+                <ul style="font-size:1em; padding-left: 25px; text-align: left;">
+                    <li style="margin-bottom: 8px;">
+                        <strong>Market Realities:</strong> Its simple design highlights how high costs (barriers to
+                        entry) in real Bitcoin mining limit competition, favoring a few large players (an oligopoly)
+                        rather than an open market for everyone.
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <strong>Resource Use:</strong> The artwork's pointless energy consumption mirrors the 'Tragedy
+                        of the Commons,' where individuals use vast shared energy for private profit, risking
+                        environmental harm from overuse and pollution.
+                    </li>
+                </ul>
+                <img src="images/bittercoin2.png" alt="BitterCoin Artwork Detail"
+                    style="max-width: 50%; height: auto; margin-top: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); display: block; margin-left: auto; margin-right: auto;">
+                <div class="footnote">The "BitterCoin" installation by César Escudero Andaluz & Martín Nadal (2016).
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <script>
+            // Chart.js Global Defaults
+            Chart.defaults.font.family = "'Roboto', sans-serif";
+            Chart.defaults.font.size = 10;
+            Chart.defaults.color = '#332D22';
+            Chart.defaults.borderColor = 'rgba(218,165,32,0.2)';
+            Chart.defaults.plugins.legend.labels.boxWidth = 10;
+            Chart.defaults.plugins.legend.labels.padding = 10;
+            Chart.defaults.plugins.legend.position = 'bottom';
+            Chart.defaults.plugins.tooltip.mode = 'index';
+            Chart.defaults.plugins.tooltip.intersect = false;
+            Chart.defaults.elements.line.tension = 0.3;
+            Chart.defaults.elements.line.borderWidth = 2;
+            Chart.defaults.elements.point.radius = 2; // Default point radius
+            Chart.defaults.elements.point.hoverRadius = 4;
+
+            // --- Common Chart Options ---
+            const commonChartOptions = (title) => ({
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: title, font: { size: 13, weight: 'bold' }, color: '#4A3B24', padding: { top: 5, bottom: 10 } },
+                },
+                scales: {
+                    x: { ticks: { font: { size: 9 }, maxRotation: 30, minRotation: 30, autoSkipPadding: 10 }, grid: { display: false } },
+                    y: { ticks: { font: { size: 9 } }, grid: { color: 'rgba(218,165,32,0.1)' } }
+                }
+            });
+
+            const timeScaleOptions = (unit = 'month', tooltipFormat = 'MMM yy', displayFormat = 'MMM yy') => ({ // Defaulted tooltipFormat
+                x: {
+                    type: 'time',
+                    time: { unit: unit, tooltipFormat: tooltipFormat, displayFormats: { [unit]: displayFormat } },
+                    ticks: { font: { size: 9 }, maxRotation: 30, minRotation: 30, autoSkipPadding: 10, source: 'auto' },
+                    grid: { display: false }
+                }
+            });
+
+            // --- Illustrative Data Generators ---
+            const generateTimeSeriesData = (length, base, trend, seasonalityFactor, noiseFactor, nonNegative = true) => {
+                const data = [];
+                for (let i = 0; i < length; i++) {
+                    let value = base + i * trend + Math.sin(i / (length / (Math.PI * (4 + Math.random() * 2)))) * seasonalityFactor + (Math.random() - 0.5) * noiseFactor;
+                    if (nonNegative) {
+                        data.push(Math.max(0, value));
+                    } else {
+                        data.push(value);
+                    }
+                }
+                return data;
+            };
+
+            const generateDailyCorrelatedData = (base, priceData, correlationFactor, noiseFactor, nonNegative = true) => {
+                return priceData.map(price => {
+                    let value = base + price * correlationFactor + (Math.random() - 0.5) * noiseFactor;
+                    return nonNegative ? Math.max(0, value) : value;
+                });
+            };
+
+
+            // --- CHART ONE: Price, Hashrate, and Energy Demand ---
+            // Assuming canvas with ID 'priceHashEnergyChart' exists in your HTML
+            const pheCtx = document.getElementById('priceHashEnergyChart');
+            if (pheCtx) {
+                const numPoints1 = 36; // 3 years of monthly data
+                const labels1 = Array.from({ length: numPoints1 }, (_, i) => new Date(2021, i, 1));
+                new Chart(pheCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels1,
+                        datasets: [
+                            {
+                                label: 'Bitcoin Price (k USD)',
+                                data: generateTimeSeriesData(numPoints1, 30, 0.5, 20, 15),
+                                borderColor: 'rgb(75, 192, 192)',
+                                yAxisID: 'yPrice',
+                                pointBackgroundColor: 'rgb(75, 192, 192)'
+                            },
+                            {
+                                label: 'Network Hash Rate (EH/s)',
+                                data: generateTimeSeriesData(numPoints1, 150, 12, 50, 40),
+                                borderColor: 'rgb(255, 159, 64)',
+                                yAxisID: 'yHashEnergy',
+                                pointBackgroundColor: 'rgb(255, 159, 64)'
+                            },
+                            {
+                                label: 'Est. Energy Consumption (Ann. TWh)',
+                                data: generateTimeSeriesData(numPoints1, 90, 2.5, 25, 20),
+                                borderColor: 'rgb(201, 203, 207)',
+                                yAxisID: 'yHashEnergy',
+                                borderDash: [5, 5],
+                                pointBackgroundColor: 'rgb(201, 203, 207)'
+                            }
+                        ]
+                    },
+                    options: {
+                        ...commonChartOptions('Bitcoin Price, Hash Rate & Energy Use Trends'),
+                        scales: {
+                            ...timeScaleOptions('month', 'MMM yy', 'MMM yy'),
+                            yPrice: {
+                                position: 'left',
+                                title: { display: true, text: 'Price (k USD)', font: { size: 10, weight: 'bold' }, color: 'rgb(75, 192, 192)' },
+                                ticks: { font: { size: 9 }, color: 'rgb(75, 192, 192)' },
+                                grid: { drawOnChartArea: false }
+                            },
+                            yHashEnergy: {
+                                position: 'right',
+                                title: { display: true, text: 'Hash Rate (EH/s) / Energy (TWh)', font: { size: 10, weight: 'bold' }, color: 'rgb(255, 159, 64)' },
+                                ticks: { font: { size: 9 }, color: 'rgb(255, 159, 64)' }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- CHART TWO: Local Community Impact - Scrubgrass Plant ---
+            // Assuming canvas with ID 'localImpactScrubgrassChart' exists in your HTML
+            const lisCtx = document.getElementById('localImpactScrubgrassChart');
+            if (lisCtx) {
+                const numDays = 60; // Approx 2 months of daily data
+                const startDate = new Date(2022, 0, 1); // Example start date
+                const labelsLocal = Array.from({ length: numDays }, (_, i) => new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000));
+
+                const bitcoinPriceDataLocal = [];
+                let currentPriceLocal = 20000 + (Math.random() - 0.5) * 5000;
+                for (let i = 0; i < numDays; i++) {
+                    bitcoinPriceDataLocal.push(currentPriceLocal);
+                    currentPriceLocal += (Math.random() - 0.5) * 2000 + Math.sin(i / 5) * 500;
+                    currentPriceLocal = Math.max(10000, currentPriceLocal);
+                }
+
+                const co2DataLocal = generateDailyCorrelatedData(500, bitcoinPriceDataLocal, 0.016, 200);
+                const noxDataLocal = generateDailyCorrelatedData(300, bitcoinPriceDataLocal, 0.014, 100);
+
+                new Chart(lisCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labelsLocal,
+                        datasets: [
+                            {
+                                label: 'Daily CO2 Emissions (Metric Tons)',
+                                data: co2DataLocal,
+                                borderColor: 'rgb(112, 128, 144)',
+                                backgroundColor: 'rgba(112, 128, 144, 0.1)',
+                                yAxisID: 'yEmissions',
+                                fill: 'start',
+                                pointRadius: 1.5 // Smaller points for daily data
+                            },
+                            {
+                                label: 'Daily NOx Emissions (kg)',
+                                data: noxDataLocal,
+                                borderColor: 'rgb(255, 159, 64)',
+                                backgroundColor: 'rgba(255, 159, 64, 0.1)',
+                                yAxisID: 'yNOx',
+                                fill: 'start',
+                                pointRadius: 1.5 // Smaller points for daily data
+                            },
+                            {
+                                label: 'Bitcoin Price (USD)',
+                                data: bitcoinPriceDataLocal,
+                                borderColor: 'rgb(75, 192, 192)',
+                                yAxisID: 'yPrice',
+                                pointRadius: 0.5 // Even smaller/no points for reference line
+                            }
+                        ]
+                    },
+                    options: {
+                        ...commonChartOptions('Scrubgrass Plant: Daily Emissions vs. Bitcoin Price'),
+                        scales: {
+                            ...timeScaleOptions('day', 'MMM d, yy', 'MMM d'), // Corrected tooltipFormat
+                            yEmissions: {
+                                position: 'left',
+                                title: { display: true, text: 'CO2 (Metric Tons)', font: { size: 10, weight: 'bold' }, color: 'rgb(112, 128, 144)' },
+                                ticks: { font: { size: 9 }, color: 'rgb(112, 128, 144)' },
+                                grid: { color: 'rgba(112, 128, 144,0.1)' }
+                            },
+                            yNOx: {
+                                position: 'left',
+                                offset: true,
+                                title: { display: true, text: 'NOx (kg)', font: { size: 10, weight: 'bold' }, color: 'rgb(255, 159, 64)' },
+                                ticks: { font: { size: 9 }, color: 'rgb(255, 159, 64)' },
+                                grid: { drawOnChartArea: false }
+                            },
+                            yPrice: {
+                                position: 'right',
+                                title: { display: true, text: 'Bitcoin Price (USD)', font: { size: 10, weight: 'bold' }, color: 'rgb(75, 192, 192)' },
+                                grid: { drawOnChartArea: false },
+                                ticks: { font: { size: 9 }, color: 'rgb(75, 192, 192)' }
+                            }
+                        },
+                        plugins: {
+                            tooltip: { // Ensuring tooltip customization is applied
+                                callbacks: {
+                                    label: function (context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            if (context.dataset.yAxisID === 'yPrice') {
+                                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(context.parsed.y);
+                                            } else if (context.dataset.yAxisID === 'yNOx') {
+                                                label += context.parsed.y.toFixed(1) + ' kg';
+                                            } else { // yEmissions for CO2
+                                                label += context.parsed.y.toFixed(1) + ' tons';
+                                            }
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- CHART THREE: Emissions & Climate Damages ---
+            // Assuming canvas with ID 'emissionsDamagesChart' exists in your HTML
+            const edCtx = document.getElementById('emissionsDamagesChart');
+            if (edCtx) {
+                const numYears = 7; // 2019-2025 for example
+                const quarterlyLabels = [];
+                const quarterlyCO2 = [];
+                const quarterlyDamages = [];
+
+                const annualCO2Base = generateTimeSeriesData(numYears, 50, 5, 20, 10);
+                const annualDamagesBase = annualCO2Base.map(co2 => co2 * (0.05 + Math.random() * 0.05) * (190 / 100)); // Using $190 SCC, scaling for Billion
+
+                for (let i = 0; i < numYears; i++) {
+                    for (let q = 1; q <= 4; q++) {
+                        quarterlyLabels.push(new Date(2019 + i, (q - 1) * 3, 1));
+                        let qCO2 = annualCO2Base[i] / 4 + (Math.random() - 0.5) * (annualCO2Base[i] / 10);
+                        quarterlyCO2.push(Math.max(0, qCO2));
+                        quarterlyDamages.push(Math.max(0, (annualDamagesBase[i] / 4 + (Math.random() - 0.5) * (annualDamagesBase[i] / 10))));
+                    }
+                }
+
+                new Chart(edCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: quarterlyLabels,
+                        datasets: [
+                            {
+                                label: 'Est. Quarterly CO2 Emissions (MtCO2e)',
+                                data: quarterlyCO2,
+                                backgroundColor: 'rgba(112, 128, 144, 0.7)',
+                                yAxisID: 'yCO2',
+                                order: 2
+                            },
+                            {
+                                label: 'Est. Quarterly Climate Damages (Billion USD)',
+                                data: quarterlyDamages,
+                                borderColor: 'rgb(192, 75, 75)',
+                                yAxisID: 'yDamages',
+                                type: 'line',
+                                pointBackgroundColor: 'rgb(192, 75, 75)',
+                                order: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        ...commonChartOptions('Est. Quarterly CO2 Emissions & Climate Damages from Bitcoin'),
+                        scales: {
+                            ...timeScaleOptions('quarter', 'QQQ yyyy', 'QQQ yy'), // Corrected tooltipFormat
+                            yCO2: {
+                                position: 'left',
+                                title: { display: true, text: 'MtCO2e', font: { size: 10, weight: 'bold' }, color: 'rgb(112, 128, 144)' },
+                                ticks: { font: { size: 9 }, color: 'rgb(112, 128, 144)' }
+                            },
+                            yDamages: {
+                                position: 'right',
+                                title: { display: true, text: 'Billion USD (Damages)', font: { size: 10, weight: 'bold' }, color: 'rgb(192, 75, 75)' },
+                                grid: { drawOnChartArea: false },
+                                ticks: { font: { size: 9 }, color: 'rgb(192, 75, 75)' }
+                            }
+                        }
+                    }
+                });
+            }
+            // Assuming commonChartOptions is defined elsewhere as in your previous code.
+            // const commonChartOptions = (title) => ({ ... });
+
+            const picCtx = document.getElementById('policyImpactChart');
+            if (picCtx) {
+                const labels = [];
+                const noPolicyEmissions = []; // e.g., Mt CO2e or relative emission units
+                const withPolicyEmissions = [];
+                const miningProfitabilityIndexNoPolicy = []; // Arbitrary index 0-100
+                const miningProfitabilityIndexWithPolicy = [];
+
+                let baseEmission = 100;
+                let baseProfit = 80;
+
+                // Simulate 24 data points (e.g., representing months or policy stages)
+                for (let i = 0; i < 24; i++) {
+                    labels.push(`Period ${i + 1}`);
+
+                    // Scenario 1: No Policy (Nash Equilibrium leads to high/unsustainable emissions)
+                    noPolicyEmissions.push(baseEmission + Math.random() * 10 - 5 + i * 0.5); // Slight upward trend or sustained high
+                    miningProfitabilityIndexNoPolicy.push(Math.max(20, baseProfit + Math.random() * 10 - 10 - i * 0.2)); // Profitability might fluctuate or slightly decline due to competition
+
+                    // Scenario 2: With Policy (e.g., escalating carbon tax / DAME tax)
+                    // Policy impact increases over time (stronger tax or better enforcement/adaptation)
+                    let policyEffectiveness = (i / 23); // 0 to 1
+                    let emissionReduction = baseEmission * 0.05 + (baseEmission * 0.6 * policyEffectiveness); // Initial small reduction, up to 65%
+                    withPolicyEmissions.push(Math.max(20, baseEmission - emissionReduction + Math.random() * 5 - 2.5));
+
+                    // Policy makes high-emission mining less profitable
+                    let profitReduction = baseProfit * 0.1 + (baseProfit * 0.5 * policyEffectiveness);
+                    miningProfitabilityIndexWithPolicy.push(Math.max(10, baseProfit - profitReduction + Math.random() * 5 - 2.5));
+                }
+
+                new Chart(picCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Emissions Intensity (No Policy - Nash Eq.)',
+                                data: noPolicyEmissions,
+                                borderColor: 'rgb(255, 99, 132)', // Reddish
+                                backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                                yAxisID: 'yEmissions',
+                                fill: false,
+                                borderDash: [5, 5] // Dashed line for "no policy" scenario
+                            },
+                            {
+                                label: 'Emissions Intensity (With Policy)',
+                                data: withPolicyEmissions,
+                                borderColor: 'rgb(75, 192, 192)', // Teal
+                                backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                                yAxisID: 'yEmissions',
+                                fill: false
+                            },
+                            {
+                                label: 'Mining Profitability Index (No Policy)',
+                                data: miningProfitabilityIndexNoPolicy,
+                                borderColor: 'rgb(255, 159, 64)', // Orange
+                                yAxisID: 'yProfit',
+                                type: 'bar', // Show profitability as bars for contrast
+                                backgroundColor: 'rgba(255, 159, 64, 0.3)',
+                                order: 2 // Render bars behind lines
+                            },
+                            {
+                                label: 'Mining Profitability Index (With Policy)',
+                                data: miningProfitabilityIndexWithPolicy,
+                                borderColor: 'rgb(54, 162, 235)', // Blue
+                                yAxisID: 'yProfit',
+                                type: 'bar',
+                                backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                                order: 2
+                            }
+                        ]
+                    },
+                    options: {
+                        // Assuming commonChartOptions is defined globally or passed in.
+                        // If commonChartOptions is defined as: const commonChartOptions = (title) => ({...});
+                        // then you would spread it like this:
+                        ...commonChartOptions('Illustrative Policy Impact on Mining Emissions & Profitability'),
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Policy Implementation Stages / Time',
+                                    font: { size: 10, weight: 'bold' }
+                                },
+                                // If commonChartOptions.scales.x exists and you want to merge:
+                                // ...commonChartOptions().scales.x 
+                                // Otherwise, define x-axis properties here if not covered by commonChartOptions
+                                ticks: { font: { size: 9 }, maxRotation: 30, minRotation: 30, autoSkipPadding: 10 },
+                                grid: { display: false }
+                            },
+                            yEmissions: {
+                                position: 'left',
+                                title: {
+                                    display: true,
+                                    text: 'Relative Emissions Intensity',
+                                    font: { size: 10, weight: 'bold' },
+                                    color: 'rgb(75, 192, 192)'
+                                },
+                                ticks: { font: { size: 9 }, color: 'rgb(75, 192, 192)' },
+                                grid: { color: 'rgba(75, 192, 192,0.1)' }
+                            },
+                            yProfit: {
+                                position: 'right',
+                                title: {
+                                    display: true,
+                                    text: 'Mining Profitability Index (0-100)',
+                                    font: { size: 10, weight: 'bold' },
+                                    color: 'rgb(255, 159, 64)'
+                                },
+                                ticks: { font: { size: 9 }, color: 'rgb(255, 159, 64)' },
+                                grid: { drawOnChartArea: false }
+                            }
+                        },
+                        plugins: { // This is the plugins object
+                            tooltip: { // This is the tooltip object within plugins
+                                callbacks: { // This is the callbacks object within tooltip
+                                    label: function (context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed.y !== null) {
+                                            label += context.parsed.y.toFixed(1);
+                                            if (context.dataset.yAxisID === 'yEmissions') label += ' units';
+                                            if (context.dataset.yAxisID === 'yProfit') label += ' index pts';
+                                        }
+                                        return label;
+                                    } // Closes label function
+                                } // Closes callbacks object
+                            } // Closes tooltip object
+                        } // Closes plugins object
+                        // The extra brace was here in your original snippet. It has been removed.
+                    } // Closes options object
+                }); // Closes new Chart call
+            } // Closes if (picCtx)
+
+
+
+        </script>
+
+
+        <!-- ─── References (Chicago style, alphabetical) ─────────────────────────── -->
+        <div class="bittercoin-page">
+            <div class="bittercoin-page-content text-left">
+                <h2>References</h2>
+
+                <ul class="reference-list">
+
+                    <li>
+                        Akerlof, George A. 1970. “The Market for ‘Lemons’: Quality Uncertainty and the Market
+                        Mechanism.”
+                        <em>Quarterly Journal of Economics</em> 84 (3): 488–500.
+                        <a href="https://doi.org/10.2307/1879431" target="_blank"
+                            rel="noopener">https://doi.org/10.2307/1879431</a>
+                    </li>
+
+                    <li>
+                        Andaluz, César E., and Martín Nadal. 2016.
+                        <em>BitterCoin, The Worst Miner Ever</em>. Artist documentation.
+                        <a href="https://martinnadal.eu/bittercoin" target="_blank"
+                            rel="noopener">https://martinnadal.eu/bittercoin</a>
+                    </li>
+
+                    <li>
+                        Budish, Eric. 2018. “The Economic Limits of Bitcoin and the Blockchain.” NBER Working
+                        Paper 24717.
+                        <a href="https://www.nber.org/papers/w24717" target="_blank"
+                            rel="noopener">https://www.nber.org/papers/w24717</a>
+                    </li>
+
+                    <li>
+                        Cambridge Centre for Alternative Finance (CCAF). 2024.
+                        <em>Cambridge Bitcoin Electricity Consumption Index (CBECI)</em>.
+                        <a href="https://ccaf.io/cbeci/index" target="_blank"
+                            rel="noopener">https://ccaf.io/cbeci/index</a>
+                    </li>
+
+                    <li>
+                        Coin Metrics. 2024. “Bitcoin Miners’ Income Stabilizes Post‑Halving.”
+                        <a href="https://coinmetrics.io" target="_blank"
+                            rel="noopener">https://coinmetrics.io/bitcoin‑miners‑income‑stabilizes‑post‑halving</a>
+                    </li>
+
+                    <li>
+                        Cointelegraph. 2023. “Bitcoin Mining Difficulty: What You Need to Know.”
+                        <a href="https://cointelegraph.com" target="_blank"
+                            rel="noopener">https://cointelegraph.com/explained/bitcoin‑mining‑difficulty‑explained</a>
+                    </li>
+
+                    <li>
+                        Guidi, Gianluca, Francesca Dominici, Nat Steinsultz, et al. 2025.
+                        “The Environmental Burden of the United States’ Bitcoin Mining Boom.”
+                        <em>Nature Communications</em> 16 (2970).
+                        <a href="https://doi.org/10.1038/s41467-025-58287-3" target="_blank"
+                            rel="noopener">https://doi.org/10.1038/s41467‑025‑58287‑3</a>
+                    </li>
+
+                    <li>
+                        Hardin, Garrett. 1968. “The Tragedy of the Commons.” <em>Science</em> 162 (3859): 1243–48.
+                        <a href="https://doi.org/10.1126/science.162.3859.1243" target="_blank"
+                            rel="noopener">https://doi.org/10.1126/science.162.3859.1243</a>
+                    </li>
+
+                    <li>
+                        Jones, Benjamin A., Andrew L. Goodkind, and Robert P. Berrens. 2022.
+                        “Economic Estimation of Bitcoin Mining’s Climate Damages Demonstrates Closer Resemblance to
+                        Digital Crude than Digital Gold.”
+                        <em>Scientific Reports</em> 12 (14512).
+                        <a href="https://doi.org/10.1038/s41598-022-18686-8" target="_blank"
+                            rel="noopener">https://doi.org/10.1038/s41598‑022‑18686‑8</a>
+                    </li>
+
+                    <li>
+                        Ma, Jing, Joshua S. Gans, and Rabee Tourky. 2018.
+                        “Market Structure in Bitcoin Mining.” NBER Working Paper 24242.
+                        <a href="https://www.nber.org/papers/w24242" target="_blank"
+                            rel="noopener">https://www.nber.org/papers/w24242</a>
+                    </li>
+
+                    <li>
+                        Makarov, Igor, and Antoinette Schoar. 2021.
+                        “Blockchain Analysis of the Bitcoin Market.” NBER Working Paper 29396.
+                        <a href="https://www.nber.org/papers/w29396" target="_blank"
+                            rel="noopener">https://www.nber.org/papers/w29396</a>
+                    </li>
+
+                    <li>
+                        Papp, Anna, Douglas Almond, and Shuang Zhang. 2023.
+                        “Bitcoin and Carbon Dioxide Emissions: Evidence from Daily Production Decisions.” NBER Working
+                        Paper 31745.
+                        <a href="https://www.nber.org/papers/w31745" target="_blank"
+                            rel="noopener">https://www.nber.org/papers/w31745</a>
+                    </li>
+
+                    <li>
+                        Singh, Rajani, Ashutosh D. Dwivedi, Gautam Srivastava, Agnieszka Wiszniewska‑Matyszkiel, and
+                        Xiaochun Cheng. 2018.
+                        “A Game Theoretic Analysis of Resource Mining in Blockchain.”
+                        In <em>Proceedings of the 2018 European Control Conference (ECC)</em>, 780–85.
+                        <a href="https://eprint.iacr.org/2018/780.pdf" target="_blank"
+                            rel="noopener">https://eprint.iacr.org/2018/780.pdf</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        const wrapper = document.querySelector('.bittercoin-content-wrapper');
+        const pages = document.querySelectorAll('.bittercoin-page');
+        const slideCounter = document.getElementById('slide-counter');
+        let currentPage = 0;
+        const totalPages = 15;
+
+        Chart.defaults.font.family = "'Roboto', sans-serif";
+        Chart.defaults.font.size = 12;
+        Chart.defaults.color = '#332D22';
+        Chart.defaults.borderColor = '#D4AF37';
+
+        function updateActivePage() {
+            pages.forEach((page, index) => {
+                page.classList.toggle('active', index === currentPage);
+            });
+            wrapper.style.transform = `translateX(-${currentPage * 100}vw)`;
+            slideCounter.textContent = `${currentPage + 1} / ${totalPages}`;
+        }
+
+        function scrollToPage(index) {
+            if (index >= 0 && index < totalPages) {
+                currentPage = index;
+                updateActivePage();
+            }
+        }
+
+        document.getElementById('prev-arrow').addEventListener('click', () => scrollToPage(currentPage - 1));
+        document.getElementById('next-arrow').addEventListener('click', () => scrollToPage(currentPage + 1));
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); scrollToPage(currentPage - 1); }
+            else if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); scrollToPage(currentPage + 1); }
+        });
+        let initialX = null; let initialY = null;
+        function handleTouchStart(e) { initialX = e.touches[0].clientX; initialY = e.touches[0].clientY; }
+        function handleTouchMove(e) {
+            if (initialX === null || initialY === null) { return; }
+            let currentX = e.touches[0].clientX; let currentY = e.touches[0].clientY;
+            let diffX = initialX - currentX; let diffY = initialY - currentY;
+            if (Math.abs(diffX) > Math.abs(diffY)) {
+                e.preventDefault();
+                if (diffX > 30) { scrollToPage(currentPage + 1); }
+                else if (diffX < -30) { scrollToPage(currentPage - 1); }
+                initialX = null; initialY = null;
+            }
+        }
+        wrapper.addEventListener('touchstart', handleTouchStart, { passive: false });
+        wrapper.addEventListener('touchmove', handleTouchMove, { passive: false });
+        updateActivePage();
+
+        const chartBaseOptions = (titleText, yLabel = '', xLabel = '') => ({
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                title: { display: true, text: titleText, color: '#4A3B24', font: { size: 16, family: 'Playfair Display' } },
+                legend: { labels: { color: '#332D22', font: { size: 12 } } }
+            },
+            scales: {
+                y: { title: { display: !!yLabel, text: yLabel, color: '#4A3B24', font: { size: 12 } }, ticks: { color: '#332D22', font: { size: 10 } }, grid: { color: 'rgba(218,165,32,0.3)' } },
+                x: { title: { display: !!xLabel, text: xLabel, color: '#4A3B24', font: { size: 12 } }, ticks: { color: '#332D22', font: { size: 10 } }, grid: { color: 'rgba(218,165,32,0.2)' } }
+            }
+        });
+        const timeChartOptions = (titleText, yLabel = '') => ({
+            ...chartBaseOptions(titleText, yLabel),
+            scales: {
+                y: { ...chartBaseOptions(titleText, yLabel).scales.y },
+                x: { type: 'time', time: { unit: 'month', displayFormats: { month: 'MMM yy' } }, ticks: { color: '#332D22', source: 'auto', font: { size: 10 }, maxRotation: 45, minRotation: 45 }, grid: { color: 'rgba(218,165,32,0.2)' } }
+            }
+        });
+        const pieDoughnutBaseOptions = (titleText) => ({
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                title: { display: true, text: titleText, color: '#4A3B24', font: { size: 16, family: 'Playfair Display' } },
+                legend: { position: 'top', labels: { color: '#332D22', font: { size: 12 } } }
+            }
+        });
+
+        const genTimeLabels = (startYear, monthsCount) => {
+            const labels = [];
+            let currentDate = new Date(startYear, 0, 1);
+            for (let i = 0; i < monthsCount; i++) {
+                labels.push(currentDate.toISOString().split('T')[0]);
+                currentDate.setMonth(currentDate.getMonth() + 1);
+            }
+            return labels;
+        };
+        const genSequentialLabels = (start, count, prefix = '') => Array.from({ length: count }, (_, i) => `${prefix}${start + i}`);
+
+        // Chart Data (Illustrative - replace with real data)
+        // More data points for time series charts (24 months = 2 years)
+        const timeLabels24Months = genTimeLabels(2022, 24); // Generate 24 monthly labels starting 2022
+        const illustrativeData24Points = () => Array.from({ length: 24 }, () => Math.random() * 100);
+
+
+        // Bitcoin Hash Rate & Difficulty Chart (Slide 9)
+        const ctxHashRateDiffElement = document.getElementById('bitcoinHashRateAndDifficultyChart');
+        if (ctxHashRateDiffElement) {
+            new Chart(ctxHashRateDiffElement.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: timeLabels24Months,
+                    datasets: [
+                        {
+                            label: 'Bitcoin Network Hash Rate (EH/s)',
+                            data: Array.from({ length: 24 }, (_, i) => 200 + i * 10 + Math.random() * 50), // Illustrative increasing trend
+                            borderColor: '#B8860B', yAxisID: 'yHash', tension: 0.1
+                        },
+                        {
+                            label: 'Mining Difficulty (Trillions)',
+                            data: Array.from({ length: 24 }, (_, i) => 30 + i * 2 + Math.random() * 10), // Illustrative increasing trend
+                            borderColor: '#654321', yAxisID: 'yDiff', tension: 0.1
+                        }
+                    ]
+                },
+                options: { ...timeChartOptions('Bitcoin Hash Rate & Difficulty'), scales: { ...timeChartOptions().scales, yHash: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Hash Rate (EH/s)' } }, yDiff: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'Difficulty (T)' }, grid: { drawOnChartArea: false } } } }
+            });
+        }
+
+        // Miner Revenue vs Cost Chart (Slide 10)
+        const ctxMinerRevCostElement = document.getElementById('minerRevenueVsCostChart');
+        if (ctxMinerRevCostElement) {
+            new Chart(ctxMinerRevCostElement.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: timeLabels24Months.slice(0, 12), // 12 months for simplicity here
+                    datasets: [
+                        {
+                            label: 'Avg. Miner Revenue per TH/s ($/day)',
+                            data: Array.from({ length: 12 }, () => 0.1 + Math.random() * 0.1),
+                            backgroundColor: '#DAA520',
+                        },
+                        {
+                            label: 'Avg. Mining Cost per TH/s ($/day - Est.)',
+                            data: Array.from({ length: 12 }, () => 0.05 + Math.random() * 0.08),
+                            backgroundColor: '#A0522D',
+                        }
+                    ]
+                },
+                options: { ...timeChartOptions('Illustrative Miner Revenue vs. Cost per TH/s', '$ / TH/s / Day'), scales: { ...timeChartOptions().scales, x: { ...timeChartOptions().scales.x, time: { unit: 'month' } } } }
+            });
+        }
+
+
+        // Bitcoin Energy & CO2 Chart (Slide 14)
+        const ctxEnergyCO2Element = document.getElementById('bitcoinEnergyAndCO2Chart');
+        if (ctxEnergyCO2Element) {
+            new Chart(ctxEnergyCO2Element.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: genTimeLabels(2015, 10), // 10 annual points
+                    datasets: [
+                        {
+                            label: 'Bitcoin Annual Energy Consumption (TWh)',
+                            data: [10, 15, 25, 40, 50, 70, 130, 110, 90, 140],
+                            borderColor: '#8B4513', yAxisID: 'yEnergy', tension: 0.1
+                        },
+                        {
+                            label: 'Estimated Annual CO2 Emissions (MtCO2e)',
+                            data: [5, 7, 12, 20, 25, 35, 65, 55, 45, 70], // Illustrative, proportional to energy
+                            borderColor: '#708090', yAxisID: 'yCO2', tension: 0.1
+                        }
+                    ]
+                },
+                options: { ...timeChartOptions('Bitcoin Energy Use & CO2 Emissions'), scales: { ...timeChartOptions().scales, yEnergy: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Energy (TWh)' } }, yCO2: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'CO2 (MtCO2e)' }, grid: { drawOnChartArea: false } } } }
+            });
+        }
+
+
+        // Mining Pool Share Chart (Slide 8)
+        const ctxPoolShareElement = document.getElementById('miningPoolShareChart');
+        if (ctxPoolShareElement) {
+            new Chart(ctxPoolShareElement.getContext('2d'), {
+                type: 'pie', data: { labels: ['Foundry USA', 'AntPool', 'F2Pool', 'ViaBTC', 'Binance Pool', 'MaraPool', 'Luxor', 'SBI Crypto', 'Braiins Pool', 'Poolin', 'Others (small pools)'], datasets: [{ label: 'Mining Pool Hashrate Distribution (Est. %)', data: [25, 15, 12, 8, 7, 5, 4, 3, 3, 2, 16], backgroundColor: ['#B8860B', '#DAA520', '#FFD700', '#654321', '#8B4513', '#A0522D', '#C0C0C0', '#D2B48C', '#F4A460', '#CD853F', '#D3D3D3'], hoverOffset: 4 }] }, options: pieDoughnutBaseOptions('Bitcoin Mining Pool Distribution')
+            });
+        }
+
+        // ASIC Efficiency Chart (Slide 9)
+        const ctxASICElement = document.getElementById('asicEfficiencyChart');
+        if (ctxASICElement) { // Adjusted to have more "generations" for > 20 points, though conceptual
+            const asicGenerations = Array.from({ length: 22 }, (_, i) => `Gen ${i + 1} (${2013 + i})`);
+            const asicEfficiencyData = [1200, 1100, 1000, 900, 800, 700, 600, 500, 400, 300, 200, 150, 100, 80, 60, 50, 40, 35, 30, 28, 25, 22].reverse();
+            new Chart(ctxASICElement.getContext('2d'), {
+                type: 'bar', data: { labels: asicGenerations, datasets: [{ label: 'ASIC Miner Efficiency (J/TH)', data: asicEfficiencyData, backgroundColor: '#B8860B' }] }, options: { ...chartBaseOptions('ASIC Miner Efficiency Evolution', 'Efficiency (Joules/Terahash)'), scales: { ...chartBaseOptions().scales, x: { ...chartBaseOptions().scales.x, ticks: { ...chartBaseOptions().scales.x.ticks, autoSkip: true, maxTicksLimit: 12, maxRotation: 45, minRotation: 30 } } } }
+            });
+        }
+
+        // Bitcoin Transaction Volume Chart (Slide 10)
+        const ctxTxVolElement = document.getElementById('bitcoinTransactionVolumeChart');
+        if (ctxTxVolElement) {
+            new Chart(ctxTxVolElement.getContext('2d'), {
+                type: 'line', data: { labels: timeLabels24Months, datasets: [{ label: 'Daily Transaction Volume (Billions USD)', data: illustrativeData24Points().map(d => d / 2), borderColor: '#DAA520', tension: 0.1, fill: false }] }, options: timeChartOptions('Bitcoin Transaction Volume (USD)', 'Volume (Billions USD)')
+            });
+        }
+
+        // Bitcoin Energy Consumption Chart (Slide 14)
+        const ctxEnergyElement = document.getElementById('bitcoinEnergyConsumptionChart');
+        if (ctxEnergyElement) { // This will remain 10 annual points as it's usually reported annually
+            new Chart(ctxEnergyElement.getContext('2d'), {
+                type: 'line', data: { labels: genTimeLabels(2015, 10), datasets: [{ label: 'Bitcoin Annual Energy Consumption (TWh) - CBECI', data: [10, 15, 25, 40, 50, 70, 130, 110, 90, 140], borderColor: '#8B4513', backgroundColor: 'rgba(139,69,19,0.3)', fill: true, tension: 0.1 }] }, options: timeChartOptions('Bitcoin Annual Energy Consumption', 'Energy (TWh)')
+            });
+        }
+
+        // Bitcoin Energy Mix Chart (Slide 15)
+        const ctxEnergyMixElement = document.getElementById('bitcoinEnergyMixChart');
+        if (ctxEnergyMixElement) {
+            new Chart(ctxEnergyMixElement.getContext('2d'), {
+                type: 'doughnut', data: { labels: ['Renewables (Hydro, Solar, Wind)', 'Nuclear', 'Natural Gas', 'Coal', 'Other/Oil'], datasets: [{ label: 'Estimated Bitcoin Energy Mix (2024 CCAF Survey-based)', data: [40, 12.4, 38.2, 8.9, 0.5], backgroundColor: ['#2E8B57', '#4682B4', '#FFD700', '#A9A9A9', '#708090'], hoverOffset: 4 }] }, options: pieDoughnutBaseOptions('Bitcoin Energy Mix (Illustrative)')
+            });
+        }
+
+        // Bitcoin E-Waste Estimates Chart (Slide 16)
+        const ctxEWasteElement = document.getElementById('bitcoinEWasteEstimatesChart');
+        if (ctxEWasteElement) {
+            new Chart(ctxEWasteElement.getContext('2d'), {
+                type: 'bar', data: { labels: ['Digiconomist (2021)', 'CCAF (2024)', 'Köhler & Pizzol (2019 LCA)', 'Jana et al. (2023 rev)'], datasets: [{ label: 'Annual E-Waste Estimates (kilotons)', data: [30.7, 2.3, 5, 25.7], backgroundColor: ['#A0522D', '#B8860B', '#DAA520', '#654321'] }] }, options: chartBaseOptions('Bitcoin E-Waste Estimates Comparison', 'E-Waste (kilotons)')
+            });
+        }
+
+        // Bitcoin Mining Difficulty Chart (Slide 17 - now one of two on a slide)
+        const ctxDifficultyElement = document.getElementById('bitcoinMiningDifficultyChart');
+        if (ctxDifficultyElement) {
+            new Chart(ctxDifficultyElement.getContext('2d'), {
+                type: 'line', data: { labels: timeLabels24Months, datasets: [{ label: 'Bitcoin Mining Difficulty (Trillions)', data: illustrativeData24Points().map(d => d * 0.8), borderColor: '#654321', tension: 0.1 }] }, options: timeChartOptions('Bitcoin Mining Difficulty Trend', 'Difficulty (Trillions)')
+            });
+        }
+
+        // Bitcoin Fees Chart (Slide 17)
+        const ctxFeesElement = document.getElementById('bitcoinFeesChart');
+        if (ctxFeesElement) {
+            new Chart(ctxFeesElement.getContext('2d'), {
+                type: 'line', data: { labels: timeLabels24Months, datasets: [{ label: 'Bitcoin Avg. Transaction Fee (USD)', data: illustrativeData24Points().map(d => d * 0.1), borderColor: '#A0522D', backgroundColor: 'rgba(160,82,45,0.3)', fill: 'start', tension: 0.1 }] }, options: timeChartOptions('Bitcoin Average Transaction Fees', 'Fee (USD)')
+            });
+        }
+
+        // Crypto Adoption Chart (Slide 17 - now one of two on a slide)
+        const ctxAdoptionElement = document.getElementById('cryptoAdoptionChart');
+        if (ctxAdoptionElement) { // Will remain < 20 points if only annual data is used
+            new Chart(ctxAdoptionElement.getContext('2d'), {
+                type: 'bar', data: { labels: genSequentialLabels(2016, 9), datasets: [{ label: 'Global Crypto Users (Millions)', data: [5, 15, 50, 100, 200, 300, 420, 516, 580], backgroundColor: '#DAA520' }] }, options: chartBaseOptions('Global Crypto User Growth', 'Users (Millions)')
+            });
+        }
+
+    </script>
+</body>
+
+</html>
